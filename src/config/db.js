@@ -6,6 +6,7 @@ export function connect(uri) {
   }
 
   mongoose.connect(uri, {
+    useUnifiedTopology: true,
     useNewUrlParser: true,
     useCreateIndex: true
   })

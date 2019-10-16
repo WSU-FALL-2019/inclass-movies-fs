@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <%- include("partials/header") %>
+
+    <% if(content) { %>
+      <%- include(content) %>
+    <% } else { %>
+      <p>Nothing to display</p>
+    <% } %>
+
+    <%- include("partials/footer") %>
+  </body>
+</html>

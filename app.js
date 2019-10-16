@@ -6,6 +6,11 @@ let cookieParser = require('cookie-parser');
 let logger = require('morgan');
 let sassMiddleware = require('node-sass-middleware');
 
+// Connecting to the database
+import { connect } from './src/config/db'
+connect("mongodb://localhost:27017/movies")
+
+// Starting express
 export let app = express();
 
 // view engine setup
@@ -52,5 +57,5 @@ server.on('error', (err) => { throw err })
 server.on('listening', () => {
   let addr = server.address()
   let bind = typeof addr === 'string' ? 'pipe ' + addr : 'port ' + addr.port
-  debug("Listening on " + bind)
+  console.log("Listening on " + bind)
 })
