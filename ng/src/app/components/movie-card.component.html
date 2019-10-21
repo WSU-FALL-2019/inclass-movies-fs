@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="card-image">
+    <figure class="image is-2by3">
+      <img src="{{ movie.poster }}" alt="TODO">
+    </figure>
+  </div>
+  <div class="card-content">
+    <p class="title">{{ movie.title }}</p>
+    <p> {{ movie.plot }}</p>
+  </div>
+  <footer class="card-footer">
+    <p class="card-footer-item"><strong>{{ movie.rating }}</strong>&nbsp;IMDB</p>
+    <p class="card-footer-item"><strong>{{ movie.votes }}</strong>&nbsp;votes</p>
+  </footer>
+  <footer class="card-footer">
+    <a routerLink="/movies/{{ movie.imdbID }}" class="card-footer-item">More...</a>
+  </footer>
+</div>

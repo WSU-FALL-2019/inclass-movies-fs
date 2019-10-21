@@ -1,0 +1,6 @@
+<div class="container">
+    <button (click)="sortMovies()" class="button">Sort</button>
+    <div class="columns is-multiline">
+        <movie-el *ngFor="let m of movies" class="column is-one-third" [movie]="m"></movie-el>
+    </div>
+</div>

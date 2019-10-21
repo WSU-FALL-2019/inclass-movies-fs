@@ -1,0 +1,33 @@
+<div class="container" *ngIf="movie$ | async as movie">
+    <div class="columns">
+        <div class="column is-one-quarter">
+            <img src="{{ movie.poster }}" alt="">
+        </div>
+        <div class="column is-three-quarters">
+            <p class="title">{{ movie.title }}</p>
+            <p>{{ movie.plot }}</p>
+            <div class="buttons">
+                <a routerLink="/movies/{{ movie.imdbID }}/edit" class="button is-primary">Edit</a>
+                <a class="button is-danger" (click)="toggleConfirmDelete()">Delete</a>
+            </div>
+
+            <div class="modal" [ngClass]="{'is-active': isToConfirmDelete}">
+                <div class="modal-background"></div>
+                <div class="modal-card">
+                    <header class="modal-card-head">
+                        <p class="modal-card-title">Delete Confirmation</p>
+                        <button class="delete" aria-label="close" (click)="toggleConfirmDelete()"></button>
+                    </header>
+                    <section class="modal-card-body">
+                       Are you sure you want to delete {{ movie.title }}?
+                    </section>
+                    <footer class="modal-card-foot">
+                        <button class="button is-danger" (click)="deleteMovie(movie)">Delete</button>
+                        <button class="button" (click)="toggleConfirmDelete()">Cancel</button>
+                    </footer>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>

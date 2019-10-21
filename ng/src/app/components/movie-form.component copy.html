@@ -1,0 +1,70 @@
+<div class="container">
+    <div *ngIf="movieExists; then editTitle else addTitle"></div>
+    <ng-template #editTitle><p class="title">Edit a  movie</p></ng-template>
+    <ng-template #addTitle><p class="title">Add an new movie</p></ng-template>
+    <form action="">
+        <div class="field is-horizontal">
+            <div class="field-body">
+                <div class="field">
+                    <label for="imdbID" class="label">IMDB ID</label>
+                    <div class="control">
+                        <input type="text" class="input" id="imdbID" name="imdbID" [(ngModel)]="movie.imdbID">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="year" class="label">Year</label>
+                    <div class="control">
+                        <input type="number" id="year" class="input" name="year" [(ngModel)]="movie.year">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="rated" class="label">Rated</label>
+                    <div class="control">
+                        <input type="text" id="rated" class="input" name="rated" [(ngModel)]="movie.rated">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="genre" class="label">Genre</label>
+                    <div class="control">
+                        <input type="text" id="genre" class="input" name="genre" [(ngModel)]="movie.genre">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="rating" class="label">IMDB Rating</label>
+                    <div class="control">
+                        <input type="number" class="input" id="rating" name="rating" [(ngModel)]="movie.rating">
+                    </div>
+                </div>
+                <div class="field">
+                    <label for="votes" class="label">Votes</label>
+                    <div class="control">
+                        <input type="number" class="input" id="votes" name="votes" [(ngModel)]="movie.votes">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="field">
+            <label for="title" class="label">Title</label>
+            <div class="control">
+                <input type="text" class="input" id="title" name="title" [(ngModel)]="movie.title">
+            </div>
+        </div>
+        <div class="field">
+            <label for="poster" class="label">Poster</label>
+            <div class="control">
+                <input type="url" class="input" id="poster" name="poster" [(ngModel)]="movie.poster">
+            </div>
+        </div>
+        <div class="field">
+            <label for="plot" class="label">Plot</label>
+            <div class="control">
+                <textarea class="textarea" id="plot" name="plot" [(ngModel)]="movie.plot"></textarea>
+            </div>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-primary" (click)="submitForm()">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>
