@@ -8,7 +8,7 @@
                 <div class="field">
                     <label for="imdbID" class="label">IMDB ID</label>
                     <div class="control">
-                        <input type="hidden" formControlName="id">
+                        <input type="hidden" formControlName="_id">
                         <input type="text" class="input" formControlName="imdbID">
                     </div>
                     <p class="help is-danger" *ngIf="f.submitted && imdbID.invalid">

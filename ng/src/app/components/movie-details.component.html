@@ -7,7 +7,7 @@
             <p class="title">{{ movie.title }}</p>
             <p>{{ movie.plot }}</p>
             <div class="buttons">
-                <a routerLink="/movies/{{ movie.imdbID }}/edit" class="button is-primary">Edit</a>
+                <a routerLink="/movies/{{ movie._id }}/edit" class="button is-primary">Edit</a>
                 <a class="button is-danger" (click)="toggleConfirmDelete()">Delete</a>
             </div>
 

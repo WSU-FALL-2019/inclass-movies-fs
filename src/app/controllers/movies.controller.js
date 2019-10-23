@@ -1,18 +1,18 @@
 import { Movie } from '../models/schema'
 
 export const allMoviesAPI = (req, res, next) => {
-  Movie.find().select('-directors').exec((err, movies) => {
+  Movie.find().select('-directors -__v -reviews').exec((err, movies) => {
     if(err){
       res.json({success: false, message: "Failed query"})
     }else{
       res.write(JSON.stringify(movies))
-      res.end();
+      res.end()
     }
   })
 }
 
 export const oneMovieAPI = (req, res, next) => {
-  Movie.findOne({_id: req.params.id}).select('-directors').exec((err, movie) => {
+  Movie.findOne({_id: req.params.id}).select('-directors -__v -reviews').exec((err, movie) => {
     if(err){
       res.json({success: false, message: "Failed query"})
     }else{
@@ -23,13 +23,38 @@ export const oneMovieAPI = (req, res, next) => {
 }
 
 export const createMovieAPI = (req, res, next) => {
-
+  new Movie(req.body).save(err => {
+    if(err){
+      res.json({success: false, message: "Unable to add movie"})
+    }else{
+      res.end()
+    }
+  })
 } 
 
 export const updateMovieAPI = (req, res, next) => {
-
+  Movie.findOne({_id: req.params.id}).select('-directors').exec((err, movie) => {
+    if(err){
+      res.json({success: false, message: "Unable to find the requested movie"})
+    }else{
+      Object.assign(movie, req.body)
+      movie.save(err => {
+        if(err){
+          res.json({success: false, message: "Unable to update the requested movie"})
+        }else{
+          res.end();
+        }
+      })
+    }
+  })
 }
 
 export const deleteMovieAPI = (req, res, next) => {
-
+  Movie.findByIdAndRemove(req.params.id, err => {
+    if(err){
+      res.json({success: false, message: "Unable to delete the requested movie"})
+    }else{
+      res.end();
+    }
+  })
 }
