@@ -1,4 +1,4 @@
-import { Movie } from '../models/schema'
+import { Movie } from '../models/movie'
 
 /* GET home page. */
 export const indexPage = (req, res, next) => {

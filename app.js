@@ -27,8 +27,16 @@ app.use(sassMiddleware({
   indentedSyntax: false, // true = .sass and false = .scss
   sourceMap: true
 }));
+
+// Static files
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'ng', 'build')));
+
+// Authentication using passport
+import passport from 'passport'
+import { strategy } from './src/config/passport'
+passport.use(strategy)
+app.use(passport.initialize())
 
 // Routing
 import { configureRoutes } from './src/config/routes'

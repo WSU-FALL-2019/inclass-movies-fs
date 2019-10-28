@@ -1,4 +1,4 @@
-import { Movie } from '../models/schema'
+import { Movie } from '../models/movie'
 
 export const allMoviesAPI = (req, res, next) => {
   Movie.find().select('-directors -__v -reviews').exec((err, movies) => {
