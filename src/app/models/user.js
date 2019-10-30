@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 import crypto from 'crypto'
+import { AUTH_TOKEN_EXPIRES_IN } from '../../config/vars'
+import { getSignedAuthenticationToken } from '../helpers/require_signin'
 
 const Schema = mongoose.Schema
 
@@ -38,6 +40,13 @@ userSchema.methods.setPassword = function(password){
 userSchema.methods.isValidPassword = function(password){
     let hash = crypto.pbdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex')
     return this.hash === hash
+}
+
+userSchema.methods.generateJWT = function(){
+    let expireOn = new Date()
+    expireOn.setDate(expireOn.getDate() + AUTH_TOKEN_EXPIRES_IN)
+
+    return getSignedAuthenticationToken(this, expireOn)
 }
 
 export let User = mongoose.model("User", userSchema)

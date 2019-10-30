@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Movie } from '../models/movie';
+import { Movie } from '../../models/movie';
 import { Router, ActivatedRoute } from '@angular/router';
-import { MoviesService } from '../services/movies.service';
+import { MoviesService } from '../../services/movies.service';
 import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
-import { rangeValidator } from '../validators/range.validator';
+import { rangeValidator } from '../../validators/range.validator';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({

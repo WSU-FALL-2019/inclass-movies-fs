@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { MoviesService } from '../services/movies.service';
+import { MoviesService } from '../../services/movies.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Movie } from '../models/movie';
+import { Movie } from '../../models/movie';
 import { switchMap } from 'rxjs/operators';
 import { ToastrService } from 'ngx-toastr';
 
