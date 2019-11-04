@@ -11,6 +11,8 @@ import { routes } from './routes';
 import { MovieDetailsComponent } from './components/movies/movie-details.component';
 import { MovieFormComponent } from './components/movies/movie-form.component';
 import { HttpClientModule } from '@angular/common/http'
+import { RegisterFormComponent } from './components/users/register-form.component'
+import { SignInFormComponent } from './components/users/signin-form.component'
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { HttpClientModule } from '@angular/common/http'
     MoviesComponent,
     MovieCardComponent,
     MovieDetailsComponent,
-    MovieFormComponent
+    MovieFormComponent,
+    RegisterFormComponent,
+    SignInFormComponent
   ],
   imports: [
     BrowserModule,

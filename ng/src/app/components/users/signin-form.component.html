@@ -1,0 +1,33 @@
+<div class="container">
+    <p class="title">Sign in</p>
+    <p>If you don't have an accound please 
+        <a routerLink="/register" class="button is-success">Register</a>.
+    </p>
+    <form #f="ngForm" (ngSubmit)="submitForm(f)">
+        <div class="field">
+            <label for="username" class="label">Username</label>
+            <div class="control">
+                <input type="text" class="input" name="username" id="username" #username="ngModel" [(ngModel)]="user.username">
+            </div>
+            <p class="help is-danger" *ngIf="f.submitted && username.invalid">
+                Username is required.
+            </p>
+        </div>
+        <div class="field">
+            <label for="password" class="label">Password</label>
+            <div class="control">
+                <input type="password" class="input" name="password" id="password" #username="ngModel" [(ngModel)]="user.password">
+            </div>
+            <p class="help is-danger" *ngIf="f.submitted && password.invalid">
+                Password is required.
+            </p>
+        </div>
+        <div class="field">
+            <div class="control">
+                <button class="button is-primary">Submit</button>
+                <button class="button" routerLink="/movies">Cancel</button>
+            </div>
+        </div>
+
+    </form>
+</div>
