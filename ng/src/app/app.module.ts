@@ -13,6 +13,7 @@ import { MovieFormComponent } from './components/movies/movie-form.component';
 import { HttpClientModule } from '@angular/common/http'
 import { RegisterFormComponent } from './components/users/register-form.component'
 import { SignInFormComponent } from './components/users/signin-form.component'
+import { CookieService } from 'ngx-cookie-service'
 
 @NgModule({
   declarations: [
@@ -33,7 +34,7 @@ import { SignInFormComponent } from './components/users/signin-form.component'
     ToastrModule.forRoot(),
     HttpClientModule
   ],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

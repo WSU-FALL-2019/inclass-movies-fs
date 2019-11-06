@@ -6,47 +6,47 @@ import { getSignedAuthenticationToken } from '../helpers/require_signin'
 const Schema = mongoose.Schema
 
 let userSchema = new Schema({
-    username: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true
-    },
-    email: {
-        type: String,
-        unique: true,
-        required: true,
-        trim: true
-    },
-    firstName: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    lastName: {
-        type: String,
-        required: true,
-        trim: true
-    },
-    hash: String,
-    salt: String
+  username: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true
+  },
+  email: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true
+  },
+  firstName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  lastName: {
+    type: String,
+    required: true,
+    trim: true
+  },
+  hash: String,
+  salt: String
 })
 
-userSchema.methods.setPassword = function(password){
-    this.salt = crypto.randomBytes(16).toString('hex')
-    this.hash = crypto.pbdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex')
+userSchema.methods.setPassword = function (password) {
+  this.salt = crypto.randomBytes(16).toString('hex')
+  this.hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex')
 }
 
-userSchema.methods.isValidPassword = function(password){
-    let hash = crypto.pbdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex')
-    return this.hash === hash
+userSchema.methods.isValidPassword = function (password) {
+  let hash = crypto.pbkdf2Sync(password, this.salt, 1000, 64, 'sha512').toString('hex')
+  return this.hash === hash
 }
 
-userSchema.methods.generateJWT = function(){
-    let expireOn = new Date()
-    expireOn.setDate(expireOn.getDate() + AUTH_TOKEN_EXPIRES_IN)
+userSchema.methods.generateJWT = function () {
+  let expireOn = new Date()
+  expireOn.setDate(expireOn.getDate() + AUTH_TOKEN_EXPIRES_IN)
 
-    return getSignedAuthenticationToken(this, expireOn)
+  return getSignedAuthenticationToken(this, expireOn)
 }
 
 export let User = mongoose.model("User", userSchema)

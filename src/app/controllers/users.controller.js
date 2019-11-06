@@ -24,7 +24,9 @@ export const signUserInAPI = (req, res, next) => {
       res.status(404).json(err)
     }else{
       if(user){
-        res.json({"token": user.generateJWT()})
+        let token = user.generateJWT()
+        res.cookie("token", token)
+        res.json({"token": token})
       }else{
         res.status(401).json(err)
       }

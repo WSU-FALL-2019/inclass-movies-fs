@@ -40,7 +40,6 @@ export class MovieFormComponent implements OnInit {
     }
 
     submitForm(f: NgForm): void {
-        console.log("submitted")
         if (f.valid) {
             const movie : Movie = Object.assign({}, this.movieForm.value)
             if (this.movieExists) {

@@ -7,7 +7,7 @@
         <div class="field">
             <label for="username" class="label">Username</label>
             <div class="control">
-                <input type="text" class="input" name="username" id="username" #username="ngModel" [(ngModel)]="user.username">
+                <input type="text" class="input" required name="username" id="username" #username="ngModel" [(ngModel)]="user.username">
             </div>
             <p class="help is-danger" *ngIf="f.submitted && username.invalid">
                 Username is required.
@@ -16,7 +16,7 @@
         <div class="field">
             <label for="password" class="label">Password</label>
             <div class="control">
-                <input type="password" class="input" name="password" id="password" #username="ngModel" [(ngModel)]="user.password">
+                <input type="password" required class="input" name="password" id="password" #password="ngModel" [(ngModel)]="user.password">
             </div>
             <p class="help is-danger" *ngIf="f.submitted && password.invalid">
                 Password is required.
