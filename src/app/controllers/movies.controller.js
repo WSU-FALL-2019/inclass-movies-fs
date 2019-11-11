@@ -1,5 +1,5 @@
 import { Movie } from '../models/movie'
-
+import { currentUser } from '../helpers/require_signin'
 export const allMoviesAPI = (req, res, next) => {
   Movie.find().select('-directors -__v -reviews').exec((err, movies) => {
     if(err){

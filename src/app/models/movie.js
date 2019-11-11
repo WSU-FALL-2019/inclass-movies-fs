@@ -28,7 +28,7 @@ let movieSchema = new Schema({
     votes: Number,
     genre: String,
     year: Number,
-    imbdbID: String,
+    imdbID: String,
     directors: [{type: Schema.Types.ObjectId, ref: "Person"}],
     reviews: [ reviewSchema ],
     user: {type: Schema.Types.ObjectId, ref: "User"}
