@@ -20,6 +20,15 @@ export class AuthenticationService {
         return localStorage.getItem('auth-token') !== null
     }
     
+    static httpHeaders(){
+        return {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('auth-token')}`
+              })
+        }
+    }
+    
     register(user : User): any {
         return this.http.post('/api/users/register', user, httpOptions)
     }

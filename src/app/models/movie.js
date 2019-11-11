@@ -30,7 +30,8 @@ let movieSchema = new Schema({
     year: Number,
     imbdbID: String,
     directors: [{type: Schema.Types.ObjectId, ref: "Person"}],
-    reviews: [ reviewSchema ]
+    reviews: [ reviewSchema ],
+    user: {type: Schema.Types.ObjectId, ref: "User"}
 })
 
 export let Person = mongoose.model("Person", personSchema)

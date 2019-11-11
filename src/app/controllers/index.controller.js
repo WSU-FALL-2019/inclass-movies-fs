@@ -7,6 +7,10 @@ export const indexPage = (req, res, next) => {
   })
 }
 
+export const toNGPage = (req, res, next) => {
+  res.render('layout', { content: 'index', title: 'Top 10 Movies', header: false, footer: false });
+}
+
 // GET about page 
 export const aboutPage = (req, res, next) => {
   res.render('layout', { content: 'about', title: 'Top 10 Movies' })

@@ -3,12 +3,8 @@ import { Observable, of } from 'rxjs'
 import { map } from 'rxjs/operators'
 import { Movie } from '../models/movie'
 import { HttpClient, HttpHeaders } from '@angular/common/http'
+import { AuthenticationService } from './authentication.service'
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-}
 @Injectable({
   providedIn: "root"
 })
@@ -26,16 +22,16 @@ export class MoviesService {
   }
 
   addMovie(movie : Movie): Observable<Movie> {
-    return this.http.post<Movie>(this.moviesUrl, movie, httpOptions)
+    return this.http.post<Movie>(this.moviesUrl, movie, AuthenticationService.httpHeaders())
   }
 
   updateMovie(movie : Movie) :  Observable<Movie> {
     let url = `${this.moviesUrl}/${movie._id}`
-    return this.http.put<Movie>(url, movie, httpOptions)
+    return this.http.put<Movie>(url, movie, AuthenticationService.httpHeaders())
   }
 
   deleteMovie(movie : Movie) :  Observable<{}> {
     let url = `${this.moviesUrl}/${movie._id}`
-    return this.http.delete(url, httpOptions)
+    return this.http.delete(url, AuthenticationService.httpHeaders())
   }
 }

@@ -35,7 +35,7 @@ export class MovieFormComponent implements OnInit {
         let mid = this.route.snapshot.params['id']
         if (mid !== undefined) {
             this.movieExists = true
-            this.moviesService.getMovie(mid).subscribe(m => this.movieForm.setValue(m))
+            this.moviesService.getMovie(mid).subscribe(m => this.movieForm.patchValue(m))
         }
     }
 

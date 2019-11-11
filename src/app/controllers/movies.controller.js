@@ -23,7 +23,9 @@ export const oneMovieAPI = (req, res, next) => {
 }
 
 export const createMovieAPI = (req, res, next) => {
-  new Movie(req.body).save(err => {
+  let movie = new Movie(req.body)
+  movie.user = currentUser(req)._id
+  movie.save(err => {
     if(err){
       res.json({success: false, message: "Unable to add movie"})
     }else{

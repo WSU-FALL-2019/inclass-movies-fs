@@ -2,10 +2,13 @@
 <html>
   <head>
     <title><%= title %></title>
+    <base href="/">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
-    <%- include("partials/header") %>
+    <% if(locals.header === undefined || header) { %>
+      <%- include("partials/header") %>
+    <% } %>
 
     <% if(content) { %>
       <%- include(content) %>
@@ -13,7 +16,9 @@
       <p>Nothing to display</p>
     <% } %>
 
-    <%- include("partials/footer") %>
+    <% if(locals.footer === undefined || footer) { %>
+      <%- include("partials/footer") %>
+    <% } %>
 
     <script src="/runtime.js" type="module"></script>
     <script src="/polyfills.js" type="module"></script>
