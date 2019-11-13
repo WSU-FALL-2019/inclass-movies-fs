@@ -39,24 +39,38 @@ export const updateMovieAPI = (req, res, next) => {
     if(err){
       res.json({success: false, message: "Unable to find the requested movie"})
     }else{
-      Object.assign(movie, req.body)
-      movie.save(err => {
-        if(err){
-          res.json({success: false, message: "Unable to update the requested movie"})
-        }else{
-          res.end();
-        }
-      })
+      if(movie.user == currentUser(req)._id){
+        Object.assign(movie, req.body)
+        movie.save(err => {
+          if(err){
+            res.json({success: false, message: "Unable to update the requested movie"})
+          }else{
+            res.end();
+          }
+        })
+      } else {
+        res.status(401).json({success: false, message: "Unauthorized to update"})
+      }
     }
   })
 }
 
 export const deleteMovieAPI = (req, res, next) => {
-  Movie.findByIdAndRemove(req.params.id, err => {
+  Movie.findOne({_id: req.params.id}).exec((err, movie) => {
     if(err){
-      res.json({success: false, message: "Unable to delete the requested movie"})
+      res.json({success: false, message: "Unable to find the requested movie"})
     }else{
-      res.end();
+      if(movie.user == currentUser(req)._id){
+        Movie.findByIdAndRemove(req.params.id, err => {
+          if(err){
+            res.json({success: false, message: "Unable to delete the requested movie"})
+          }else{
+            res.end();
+          }
+        })
+      } else {
+        res.status(401).json({success: false, message: "Unauthorized to delete"})
+      }
     }
   })
 }

@@ -34,6 +34,9 @@ export class MovieDetailsComponent implements OnInit{
         this.moviesService.deleteMovie(movie).subscribe(data => {
             this.toastr.success("Movie successfull deleted.")
             this.router.navigate(['/movies'])
+        }, err => {
+            this.toastr.error("Unauthorized to delete")
+            this.router.navigate(['/movies'])
         })
     }
     

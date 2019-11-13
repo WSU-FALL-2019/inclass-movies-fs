@@ -46,6 +46,9 @@ export class MovieFormComponent implements OnInit {
                 this.moviesService.updateMovie(movie).subscribe(data => {
                     this.toastr.success("Movie updated successfully")
                     this.router.navigate(['/movies'])
+                }, err => {
+                    this.toastr.error("Unauthorized to  make changes")
+                    this.router.navigate(['/movies'])
                 })
 
             } else {
